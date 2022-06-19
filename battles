@@ -1,0 +1,139 @@
+
+local Framework = loadstring(game:HttpGet("https://pastebinp.com/raw/KP1dUHFg"))()
+local Watermark = Framework:CreateWatermark("TypeHub | {game} | {fps}")
+local WriteLine = Framework:CreateWindow("Slap Battles", Vector2.new(492, 588), Enum.KeyCode.RightControl)
+
+
+
+
+local General = WriteLine:CreateTab("Main")
+local Main = General:CreateSector("Player", "right")
+local Main2 = General:CreateSector("Combat", "right")
+local Main3 = General:CreateSector("Misc", "left")
+General:CreateConfigSystem("left")
+
+
+
+
+
+Main:AddToggle("Enable Walkspeed", false, function(v)
+    if v == true then
+        getgenv().WalkSpeedValue = _G.WalkSpeed; 
+        local Player = game:service'Players'.LocalPlayer;
+        Player.Character.Humanoid:GetPropertyChangedSignal'WalkSpeed':Connect(function()
+        Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+        end)
+        Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+        end 
+        if v == false then
+        getgenv().WalkSpeedValue = 16; 
+        local Player = game:service'Players'.LocalPlayer;
+        Player.Character.Humanoid:GetPropertyChangedSignal'WalkSpeed':Connect(function()
+        Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+        end)
+        Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+    end
+    end)
+ 
+Main:AddSlider("Walkspeed", 5, 5, 30, 1, function(v)
+    _G.WalkSpeed = v
+end)
+    
+Main:AddToggle("Enable Jump Power", false, function(v)
+    if v == true then
+        getgenv().JumpPowerValue = _G.JumpPower; 
+        local Player = game:service'Players'.LocalPlayer;
+        Player.Character.Humanoid:GetPropertyChangedSignal'WalkSpeed':Connect(function()
+        Player.Character.Humanoid.JumpPower = getgenv().JumpPowerValue;
+        end)
+        Player.Character.Humanoid.JumpPower = getgenv().JumpPowerValue;
+        end 
+    if v == false then
+        getgenv().JumpPowerValue = 50; 
+        local Player = game:service'Players'.LocalPlayer;
+        Player.Character.Humanoid:GetPropertyChangedSignal'JumpPower':Connect(function()
+        Player.Character.Humanoid.JumpPower = getgenv().JumpPowerValue;
+        end)
+        Player.Character.Humanoid.JumpPower = getgenv().JumpPowerValue;
+    end
+end)
+    
+Main:AddSlider("Jump Power", 5, 5, 70, 1, function(v)
+    _G.JumpPower = v
+end)
+
+
+Main2:AddToggle("Slap Aura", false, function(v)
+    if v == true then
+    function isSpawned(player)
+        if workspace:FindFirstChild(player.Name) and player.Character:FindFirstChild("HumanoidRootPart") then
+            return true
+        else
+            return false
+        end
+     end
+     
+     while wait() do
+        for i, v in pairs(game.Players:GetPlayers()) do
+            if isSpawned(v) and v ~= game.Players.LocalPlayer and not v.Character.Head:FindFirstChild("UnoReverseCard") then
+                if (v.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
+                    game:GetService("ReplicatedStorage").b:FireServer(v.Character["Right Arm"])
+                    wait(0.1)
+                end
+            end
+        end
+     end
+end
+end)
+
+
+
+Main3:AddLabel("Requires DiamondGlove")
+
+Main3:AddButton("Lag Server", function()
+    fireclickdetector(game:GetService("Workspace").Lobby.DiamondGlove.ClickDetector)
+    local args = {
+        [1] = game:GetService("Players").LocalPlayer.Character,
+        [2] = false
+    }
+    for i=1,50000 do
+    game:GetService("ReplicatedStorage").HumanoidDied:FireServer(unpack(args))
+    game:GetService("ReplicatedStorage").Rockmode:FireServer()
+    end
+end)
+
+
+Main3:AddButton("Force Timestop", function()
+    game:GetService("ReplicatedStorage").TimestopJump:FireServer();
+    game:GetService("ReplicatedStorage").Timestopchoir:FireServer();
+    game:GetService("ReplicatedStorage").Timestop:FireServer();
+end)
+
+Main3:AddButton("Force Invisible", function()
+    game:GetService("ReplicatedStorage").Ghostinvisibilitydeactivated:FireServer();
+    game:GetService("ReplicatedStorage").Ghostinvisibilityactivated:FireServer();
+end)
+
+Main3:AddSeperator("Badges")
+
+
+Main3:AddButton("Duck Badge", function()
+    fireclickdetector(game:GetService("Workspace")["Arena"]["default island"]["Rubber Ducky"].ClickDetector);
+end)
+
+
+Main3:AddButton("Court Evidence Badge", function()
+    fireclickdetector(game:GetService("Workspace")["Lobby"]["Scene"]["knofe"].ClickDetector);
+end)
+
+Main3:AddButton("Brazil Badge", function()
+    firetouchinterest(game:GetService("Workspace")["Lobby"]["brazil"]["portal"]);
+end)
+
+
+Main3:AddButton("Obama Glove Badge", function()
+    fireclickdetector(game:GetService("Workspace")["Lobby"]["Obama"].ClickDetector);
+end)
+
+
+
